@@ -8,11 +8,57 @@ import classes from "./ContactData.css";
 
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      postalCode: "",
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name",
+        },
+        value: "",
+      },
+      street: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Strert",
+        },
+        value: "",
+      },
+      zipCode: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Zipcode",
+        },
+        value: "",
+      },
+      country: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Country",
+        },
+        value: "",
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "email",
+          placeholder: "Your Email",
+        },
+        value: "",
+      },
+      deliveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" },
+          ],
+        },
+        value: "",
+      },
     },
     loading: false,
   };
@@ -23,16 +69,6 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.price,
-      customer: {
-        name: "Bob Bee",
-        address: {
-          street: "Fake Street",
-          zipCode: "123432",
-          country: "United States",
-        },
-        email: "test@test.com",
-      },
-      deliveryMethod: "fastest",
     };
     axios
       .post("/orders.json", order)
@@ -47,34 +83,28 @@ class ContactData extends Component {
   render() {
     let form = (
       <form>
-        <Input
-          inputtype="input"
-          className={classes.Input}
-          type="text"
-          name="name"
-          placeholder="Your Name"
-        ></Input>
+        <Input elementType="..." elementConfig="..." value="..." />
         <Input
           inputtype="input"
           className={classes.Input}
           type="text"
           name="email"
           placeholder="Your Email"
-        ></Input>
+        />
         <Input
           inputtype="input"
           className={classes.Input}
           type="text"
           name="street"
           placeholder="Street"
-        ></Input>
+        />
         <Input
           inputtype="input"
           className={classes.Input}
           type="text"
           name="postal"
           placeholder="Postal Code"
-        ></Input>
+        />
         <Button btnType="Success" clicked={this.orderHandler}>
           Order
         </Button>
