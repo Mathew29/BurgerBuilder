@@ -30,7 +30,7 @@ export const purchaseBurger = (orderData) => {
       .post("/orders.json", orderData)
       .then((respone) => {
           console.log(respone.data)
-        dispatch(purchaseBurgerSuccess(respone.data, orderData))
+        dispatch(purchaseBurgerSuccess(respone.data.name, orderData))
       })
       .catch((error) => {
         dispatch(purchaseBurgerFail(error))
